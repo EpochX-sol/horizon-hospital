@@ -5,15 +5,19 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { Facebook, Twitter, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchDoctors } from '@/services/api';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface DoctorCardProps {
   image: string;
   name: string;
   specialty: string;
+  id: string;
   index: number;
 }
 
-const DoctorCard = ({ image, name, specialty, index }: DoctorCardProps) => {
+const DoctorCard = ({ image, name, specialty, id, index }: DoctorCardProps) => {
   return (
     <motion.div 
       className="group"
@@ -45,7 +49,7 @@ const DoctorCard = ({ image, name, specialty, index }: DoctorCardProps) => {
               </a>
             </div>
             
-            <Link to={`/doctors/${name.toLowerCase().replace(/\s+/g, '-')}`} className="block text-center">
+            <Link to={`/doctors/${id}`} className="block text-center">
               <Button className="w-full" size="sm">View Profile</Button>
             </Link>
           </div>
@@ -60,29 +64,25 @@ const DoctorCard = ({ image, name, specialty, index }: DoctorCardProps) => {
   );
 };
 
+const DoctorsSkeleton = () => {
+  return (
+    <>
+      {[1, 2, 3, 4].map((index) => (
+        <div key={index} className="flex flex-col items-center">
+          <Skeleton className="h-[320px] w-full rounded-2xl" />
+          <Skeleton className="h-6 w-32 mt-4" />
+          <Skeleton className="h-4 w-24 mt-2" />
+        </div>
+      ))}
+    </>
+  );
+};
+
 const DoctorsSection = () => {
-  const doctors = [
-    {
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      name: "Dr. Sarah Johnson",
-      specialty: "Cardiologist"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80",
-      name: "Dr. Michael Chen",
-      specialty: "Neurologist"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80",
-      name: "Dr. Emily Rodriguez",
-      specialty: "Pediatrician"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1618498082410-b4aa22193b38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      name: "Dr. James Wilson",
-      specialty: "Orthopedic Surgeon"
-    }
-  ];
+  const { data: doctors, isLoading, error } = useQuery({
+    queryKey: ['doctors'],
+    queryFn: fetchDoctors,
+  });
 
   return (
     <section className="py-20">
@@ -94,15 +94,24 @@ const DoctorsSection = () => {
         />
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {doctors.map((doctor, index) => (
-            <DoctorCard
-              key={doctor.name}
-              image={doctor.image}
-              name={doctor.name}
-              specialty={doctor.specialty}
-              index={index}
-            />
-          ))}
+          {isLoading ? (
+            <DoctorsSkeleton />
+          ) : error ? (
+            <div className="col-span-full text-center text-red-500">
+              Failed to load doctors. Please try again later.
+            </div>
+          ) : (
+            doctors?.map((doctor, index) => (
+              <DoctorCard
+                key={doctor.id}
+                id={doctor.id}
+                image={doctor.image}
+                name={doctor.name}
+                specialty={doctor.specialty}
+                index={index}
+              />
+            ))
+          )}
         </div>
         
         <div className="mt-12 text-center">

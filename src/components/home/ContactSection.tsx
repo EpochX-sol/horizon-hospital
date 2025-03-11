@@ -1,12 +1,35 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useBackendSimulation } from '@/hooks/useBackendSimulation';
+import { ContactFormData, submitContactForm } from '@/services/api';
+import { useForm } from 'react-hook-form';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const ContactSection = () => {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>();
+
+  const { 
+    isLoading, 
+    isSuccess, 
+    error, 
+    executeRequest: submitForm 
+  } = useBackendSimulation<ContactFormData, { success: boolean; message: string }>(
+    submitContactForm,
+    "Thank you for your message. Our team will get back to you soon."
+  );
+
+  const onSubmit = async (data: ContactFormData) => {
+    const result = await submitForm(data);
+    if (result?.success) {
+      reset(); // Clear form on success
+    }
+  };
+
   return (
     <section className="py-20">
       <div className="container px-6 mx-auto max-w-7xl">
@@ -86,19 +109,48 @@ const ContactSection = () => {
             <div className="bg-white rounded-2xl p-8 subtle-shadow border border-border/50">
               <h3 className="text-2xl font-semibold mb-6">Send Us a Message</h3>
               
-              <form className="space-y-5">
+              {isSuccess && (
+                <Alert className="mb-6 bg-green-50 text-green-800 border-green-200">
+                  <AlertDescription>
+                    Your message has been sent successfully. We'll respond as soon as possible.
+                  </AlertDescription>
+                </Alert>
+              )}
+              
+              <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-1.5">
                       Full Name
                     </label>
-                    <Input id="name" placeholder="Your name" />
+                    <Input 
+                      id="name"
+                      placeholder="Your name" 
+                      {...register('name', { required: "Name is required" })}
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium mb-1.5">
                       Email Address
                     </label>
-                    <Input id="email" type="email" placeholder="Your email" />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="Your email" 
+                      {...register('email', { 
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid email address"
+                        }
+                      })}
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                    )}
                   </div>
                 </div>
                 
@@ -106,14 +158,28 @@ const ContactSection = () => {
                   <label htmlFor="phone" className="block text-sm font-medium mb-1.5">
                     Phone Number
                   </label>
-                  <Input id="phone" placeholder="Your phone number" />
+                  <Input 
+                    id="phone" 
+                    placeholder="Your phone number"
+                    {...register('phone', { required: "Phone number is required" })}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>
+                  )}
                 </div>
                 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium mb-1.5">
                     Subject
                   </label>
-                  <Input id="subject" placeholder="Message subject" />
+                  <Input 
+                    id="subject" 
+                    placeholder="Message subject"
+                    {...register('subject', { required: "Subject is required" })}
+                  />
+                  {errors.subject && (
+                    <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>
+                  )}
                 </div>
                 
                 <div>
@@ -123,13 +189,32 @@ const ContactSection = () => {
                   <Textarea 
                     id="message" 
                     placeholder="Write your message here..." 
-                    rows={4} 
+                    rows={4}
+                    {...register('message', { 
+                      required: "Message is required",
+                      minLength: {
+                        value: 10,
+                        message: "Message must be at least 10 characters"
+                      }
+                    })}
                   />
+                  {errors.message && (
+                    <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+                  )}
                 </div>
                 
-                <Button className="w-full gap-2">
-                  <span>Send Message</span>
-                  <ArrowRight className="h-4 w-4" />
+                <Button className="w-full gap-2" disabled={isLoading} type="submit">
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
