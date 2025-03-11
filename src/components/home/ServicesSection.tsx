@@ -5,21 +5,27 @@ import {
   Brain, 
   Bone, 
   Baby, 
-  Microscope,  
-  ArrowRight 
+  Microscope, 
+  ArrowRight,
+  Activity,
+  Stethoscope
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SectionHeading from '../common/SectionHeading';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchServices } from '@/services/api';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface ServiceCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
+  id: string;
   delay: number;
 }
 
-const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, icon, id, delay }: ServiceCardProps) => {
   return (
     <motion.div 
       className="p-6 rounded-2xl bg-white subtle-shadow border border-border/50 hover:border-primary/20 transition-all duration-300 group"
@@ -34,7 +40,7 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <p className="text-muted-foreground text-sm mb-4">{description}</p>
       <Link 
-        to="/services" 
+        to={`/services/${id}`}
         className="inline-flex items-center text-primary text-sm font-medium hover:underline"
       >
         Learn more <ArrowRight className="ml-1 h-4 w-4" />
@@ -43,38 +49,48 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
   );
 };
 
+const ServicesSkeleton = () => {
+  return (
+    <>
+      {[1, 2, 3, 4, 5, 6].map((index) => (
+        <div key={index} className="p-6 rounded-2xl bg-white subtle-shadow border border-border/50">
+          <Skeleton className="h-12 w-12 rounded-xl mb-5" />
+          <Skeleton className="h-6 w-40 mb-2" />
+          <Skeleton className="h-16 w-full mb-4" />
+          <Skeleton className="h-4 w-32" />
+        </div>
+      ))}
+    </>
+  );
+};
+
+// Helper function to get icon based on string name
+const getIconByName = (iconName: string) => {
+  switch (iconName) {
+    case 'Heart':
+      return <Heart className="h-6 w-6" />;
+    case 'Brain':
+      return <Brain className="h-6 w-6" />;
+    case 'Bone':
+      return <Bone className="h-6 w-6" />;
+    case 'Baby':
+      return <Baby className="h-6 w-6" />;
+    case 'Microscope':
+      return <Microscope className="h-6 w-6" />;
+    case 'Stethoscope':
+      return <Stethoscope className="h-6 w-6" />;
+    case 'Activity':
+      return <Activity className="h-6 w-6" />;
+    default:
+      return <Heart className="h-6 w-6" />;
+  }
+};
+
 const ServicesSection = () => {
-  const services = [
-    {
-      icon: <Heart className="h-6 w-6" />,
-      title: "Cardiology",
-      description: "Comprehensive care for heart conditions with advanced diagnostic technologies and treatments."
-    },
-    {
-      icon: <Brain className="h-6 w-6" />,
-      title: "Neurology",
-      description: "Expert diagnosis and treatment for disorders of the nervous system, brain, and spinal cord."
-    },
-    {
-      icon: <Bone className="h-6 w-6" />,
-      title: "Orthopedics",
-      description: "Specialized care for musculoskeletal issues, from sports injuries to joint replacements."
-    },
-    {
-      icon: <Baby className="h-6 w-6" />,
-      title: "Pediatrics",
-      description: "Gentle and comprehensive healthcare for children, from newborns to adolescents."
-    },
-    {
-      icon: <Microscope className="h-6 w-6" />,
-      title: "Radiology",
-      description: "State-of-the-art imaging services including MRI, CT scans, and ultrasound diagnostics."
-    },
-    { 
-      title: "Laboratory",
-      description: "Quick and accurate diagnostic testing with our advanced medical laboratory."
-    }
-  ];
+  const { data: services, isLoading, error } = useQuery({
+    queryKey: ['services'],
+    queryFn: fetchServices,
+  });
 
   return (
     <section className="py-20 bg-secondary/50">
@@ -86,15 +102,24 @@ const ServicesSection = () => {
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={service.title}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              delay={index * 0.1}
-            />
-          ))}
+          {isLoading ? (
+            <ServicesSkeleton />
+          ) : error ? (
+            <div className="col-span-full text-center text-red-500">
+              Failed to load services. Please try again later.
+            </div>
+          ) : (
+            services?.map((service, index) => (
+              <ServiceCard
+                key={service.id}
+                id={service.id}
+                icon={getIconByName(service.icon)}
+                title={service.title}
+                description={service.description}
+                delay={index * 0.1}
+              />
+            ))
+          )}
         </div>
         
         <div className="mt-12 text-center">

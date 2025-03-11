@@ -89,15 +89,19 @@ const Navbar = () => {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" size="sm" className="gap-1.5">
-              <Phone className="h-3.5 w-3.5" />
-              <span>Call Us</span>
-            </Button>
-            <Button size="sm" className="gap-1.5">
-              <Calendar className="h-3.5 w-3.5" />
-              <span>Appointment</span>
-              <ChevronRight className="h-3.5 w-3.5 ml-0.5" />
-            </Button>
+            <a href="tel:+15551234567">
+              <Button variant="outline" size="sm" className="gap-1.5">
+                <Phone className="h-3.5 w-3.5" />
+                <span>Call Us</span>
+              </Button>
+            </a>
+            <Link to="/appointments">
+              <Button size="sm" className="gap-1.5">
+                <Calendar className="h-3.5 w-3.5" />
+                <span>Appointment</span>
+                <ChevronRight className="h-3.5 w-3.5 ml-0.5" />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -134,14 +138,18 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="pt-2 flex flex-col gap-2">
-              <Button variant="outline" size="sm" className="justify-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span>Call Us</span>
-              </Button>
-              <Button size="default" className="justify-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>Book Appointment</span>
-              </Button>
+              <a href="tel:+15551234567">
+                <Button variant="outline" size="sm" className="w-full justify-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>Call Us</span>
+                </Button>
+              </a>
+              <Link to="/appointments">
+                <Button size="default" className="w-full justify-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <span>Book Appointment</span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

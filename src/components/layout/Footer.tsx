@@ -50,11 +50,17 @@ const Footer = () => {
           <div>
             <h3 className="text-foreground font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              {['About Us', 'Our Services', 'Meet Our Doctors', 'Online Appointment', 'Latest News', 'Contact Us'].map((item) => (
-                <li key={item}>
-                  <Link to="#" className="text-muted-foreground text-sm hover:text-primary transition-colors flex items-center">
+              {[
+                { name: 'About Us', path: '/about' },
+                { name: 'Our Services', path: '/services' },
+                { name: 'Meet Our Doctors', path: '/doctors' },
+                { name: 'Online Appointment', path: '/appointments' },
+                { name: 'Contact Us', path: '/contact' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-muted-foreground text-sm hover:text-primary transition-colors flex items-center">
                     <ChevronRight className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -66,17 +72,17 @@ const Footer = () => {
             <h3 className="text-foreground font-semibold mb-6">Our Services</h3>
             <ul className="space-y-3">
               {[
-                'Cardiology', 
-                'Neurology', 
-                'Orthopedics', 
-                'Pediatrics', 
-                'Radiology', 
-                'Laboratory'
+                { name: 'Cardiology', path: '/services' }, 
+                { name: 'Neurology', path: '/services' }, 
+                { name: 'Orthopedics', path: '/services' }, 
+                { name: 'Pediatrics', path: '/services' }, 
+                { name: 'Radiology', path: '/services' }, 
+                { name: 'Laboratory', path: '/services' }
               ].map((item) => (
-                <li key={item}>
-                  <Link to="#" className="text-muted-foreground text-sm hover:text-primary transition-colors flex items-center">
+                <li key={item.name}>
+                  <Link to={item.path} className="text-muted-foreground text-sm hover:text-primary transition-colors flex items-center">
                     <ChevronRight className="h-3.5 w-3.5 mr-1.5 text-primary/70" />
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -93,11 +99,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center text-sm">
                 <Phone className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
-                <span className="text-muted-foreground">+1 (555) 123-4567</span>
+                <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary transition-colors">+1 (555) 123-4567</a>
               </li>
               <li className="flex items-center text-sm">
                 <Mail className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
-                <span className="text-muted-foreground">contact@healthhub.com</span>
+                <a href="mailto:contact@healthhub.com" className="text-muted-foreground hover:text-primary transition-colors">contact@healthhub.com</a>
               </li>
               <li className="flex items-start text-sm">
                 <Clock className="h-5 w-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
