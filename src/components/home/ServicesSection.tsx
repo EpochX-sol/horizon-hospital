@@ -6,8 +6,9 @@ import {
   Bone, 
   Baby, 
   Microscope, 
-  Flask, 
-  ArrowRight 
+  ArrowRight,
+  Activity,
+  Stethoscope
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SectionHeading from '../common/SectionHeading';
@@ -76,8 +77,10 @@ const getIconByName = (iconName: string) => {
       return <Baby className="h-6 w-6" />;
     case 'Microscope':
       return <Microscope className="h-6 w-6" />;
-    case 'Flask':
-      return <Flask className="h-6 w-6" />;
+    case 'Stethoscope':
+      return <Stethoscope className="h-6 w-6" />;
+    case 'Activity':
+      return <Activity className="h-6 w-6" />;
     default:
       return <Heart className="h-6 w-6" />;
   }
