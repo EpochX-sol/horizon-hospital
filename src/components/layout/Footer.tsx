@@ -25,7 +25,7 @@ const Footer = () => {
               <div className="mr-2 h-8 w-8 rounded-md bg-primary flex items-center justify-center">
                 <span className="text-white font-bold text-lg">H</span>
               </div>
-              <span className="text-xl font-display font-semibold text-foreground">HealthHub</span>
+              <span className="text-xl font-display font-semibold text-foreground">Horizon</span>
             </div>
             <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
               Providing exceptional healthcare services with cutting-edge technology and compassionate care for over 20 years.
@@ -103,7 +103,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center text-sm">
                 <Mail className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
-                <a href="mailto:contact@healthhub.com" className="text-muted-foreground hover:text-primary transition-colors">contact@healthhub.com</a>
+                <a href="mailto:contact@Horizon.com" className="text-muted-foreground hover:text-primary transition-colors">contact@Horizon.com</a>
               </li>
               <li className="flex items-start text-sm">
                 <Clock className="h-5 w-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
@@ -120,7 +120,7 @@ const Footer = () => {
         <hr className="border-t border-primary/10 my-8" />
         
         <div className="text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} HealthHub. All rights reserved. | Designed with precision for better healthcare.</p>
+          <p>© {new Date().getFullYear()} Horizon. All rights reserved. | Designed with precision for better healthcare.</p>
         </div>
       </div>
     </footer>

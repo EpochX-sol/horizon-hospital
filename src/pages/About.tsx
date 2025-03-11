@@ -21,7 +21,7 @@ const About = () => {
         <section className="pt-24 pb-16 bg-secondary/50">
           <div className="container px-6 mx-auto max-w-7xl">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">About HealthHub</h1>
+              <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">About Horizon</h1>
               <p className="text-xl text-muted-foreground">
                 Providing quality healthcare services with compassion and expertise since 2000.
               </p>
@@ -84,7 +84,7 @@ const About = () => {
         <section className="py-16 bg-secondary/50">
           <div className="container px-6 mx-auto max-w-7xl">
             <SectionHeading 
-              title="Why Choose HealthHub" 
+              title="Why Choose Horizon" 
               subtitle="We are committed to excellence in healthcare delivery"
               center
             />
@@ -152,7 +152,7 @@ const About = () => {
                   {
                     year: "2000",
                     title: "Foundation",
-                    description: "HealthHub was established with a vision to provide quality healthcare services to the community."
+                    description: "Horizon was established with a vision to provide quality healthcare services to the community."
                   },
                   {
                     year: "2005",

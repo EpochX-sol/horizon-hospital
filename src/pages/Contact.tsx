@@ -114,8 +114,8 @@ const Contact = () => {
                 {
                   icon: <Mail className="h-10 w-10" />,
                   title: "Email Address",
-                  content: "contact@healthhub.com",
-                  content2: "info@healthhub.com"
+                  content: "contact@Horizon.com",
+                  content2: "info@Horizon.com"
                 }
               ].map((item, index) => (
                 <motion.div
@@ -160,7 +160,7 @@ const Contact = () => {
                           <FormItem>
                             <FormLabel>Full Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="John Doe" {...field} />
+                              <Input placeholder="yoseph Doe" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

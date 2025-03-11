@@ -23,14 +23,14 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     if (location.pathname === '/') {
       const currentHour = new Date().getHours();
-      let greeting = 'Welcome to HealthHub';
+      let greeting = 'Welcome to Horizon';
       
       if (currentHour < 12) {
-        greeting = 'Good Morning! Welcome to HealthHub';
+        greeting = 'Good Morning! Welcome to Horizon';
       } else if (currentHour < 18) {
-        greeting = 'Good Afternoon! Welcome to HealthHub';
+        greeting = 'Good Afternoon! Welcome to Horizon';
       } else {
-        greeting = 'Good Evening! Welcome to HealthHub';
+        greeting = 'Good Evening! Welcome to Horizon';
       }
       
       // Only show welcome toast once per session

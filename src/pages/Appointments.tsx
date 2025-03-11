@@ -73,7 +73,7 @@ const Appointments = () => {
   ];
   
   const doctorsByDepartment: Record<string, string[]> = {
-    "Cardiology": ["Dr. John Smith", "Dr. Lisa Johnson"],
+    "Cardiology": ["Dr. yoseph Smith", "Dr. Lisa yosephson"],
     "Neurology": ["Dr. Robert Williams", "Dr. Maria Garcia"],
     "Orthopedics": ["Dr. James Brown", "Dr. Patricia Miller"],
     "Pediatrics": ["Dr. Jennifer Davis", "Dr. Michael Wilson"],
@@ -163,7 +163,7 @@ const Appointments = () => {
                             <FormItem>
                               <FormLabel>Full Name</FormLabel>
                               <FormControl>
-                                <Input placeholder="John Doe" {...field} />
+                                <Input placeholder="yoseph Doe" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -427,7 +427,7 @@ const Appointments = () => {
         <section className="py-16 bg-primary/5">
           <div className="container px-6 mx-auto max-w-7xl">
             <SectionHeading
-              title="Why Choose HealthHub"
+              title="Why Choose Horizon"
               subtitle="We strive to provide the best healthcare experience for our patients"
               center
             />

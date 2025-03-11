@@ -55,11 +55,11 @@ export interface Service {
 // Mock data - this would typically come from a backend API
 const mockDoctors: Doctor[] = [
   {
-    id: "dr-sarah-johnson",
-    name: "Dr. Sarah Johnson",
+    id: "dr-sarah-yosephson",
+    name: "Dr. Sarah yosephson",
     specialty: "Cardiologist",
     image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    bio: "Dr. Johnson is a board-certified cardiologist with over 15 years of experience in treating cardiovascular diseases.",
+    bio: "Dr. yosephson is a board-certified cardiologist with over 15 years of experience in treating cardiovascular diseases.",
     education: ["MD, Harvard Medical School", "Residency, Mayo Clinic", "Fellowship, Cleveland Clinic"],
     experience: 15,
     languages: ["English", "Spanish"],
@@ -72,7 +72,7 @@ const mockDoctors: Doctor[] = [
     specialty: "Neurologist",
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80",
     bio: "Dr. Chen specializes in neurological disorders and has pioneered several breakthrough treatments.",
-    education: ["MD, Stanford University", "Residency, UCSF", "Fellowship, Johns Hopkins"],
+    education: ["MD, Stanford University", "Residency, UCSF", "Fellowship, yosephs Hopkins"],
     experience: 12,
     languages: ["English", "Mandarin"],
     availability: ["Tue: 8AM-4PM", "Thu: 8AM-4PM", "Sat: 10AM-2PM"],
@@ -107,7 +107,7 @@ const mockDoctors: Doctor[] = [
 const mockTestimonials: Testimonial[] = [
   {
     id: 1,
-    content: "The care and attention I received at HealthHub was exceptional. The doctors took the time to listen to my concerns and develop a treatment plan specifically for me.",
+    content: "The care and attention I received at Horizon was exceptional. The doctors took the time to listen to my concerns and develop a treatment plan specifically for me.",
     author: "Jennifer Adams",
     role: "Cardiac Patient",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
@@ -128,8 +128,8 @@ const mockTestimonials: Testimonial[] = [
   },
   {
     id: 4,
-    content: "I've been coming to HealthHub for years now. The consistent quality of care and the way they stay on top of the latest medical advances is truly impressive.",
-    author: "Michael Johnson",
+    content: "I've been coming to Horizon for years now. The consistent quality of care and the way they stay on top of the latest medical advances is truly impressive.",
+    author: "Michael yosephson",
     role: "Long-term Patient",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
   }

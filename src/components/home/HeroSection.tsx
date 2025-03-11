@@ -3,6 +3,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Calendar, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 
 const HeroSection = () => {
   return (
@@ -46,11 +48,18 @@ const HeroSection = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Button size="lg" className="gap-2">
-                <Calendar className="h-5 w-5" />
-                <span>Book Appointment</span>
+                <Calendar className="h-5 w-5" /> 
+                            <Link to="/appointments">  
+                                <span>Book Appointment</span> 
+                            </Link>
               </Button>
               <Button size="lg" variant="outline" className="gap-2">
-                <span>Learn More</span>
+                 <Link 
+                        to={`/services`}
+                        className="inline-flex items-center text-primary text-sm font-medium hover:underline"
+                      >
+                        Learn more  
+                      </Link>
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </motion.div>

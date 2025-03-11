@@ -66,8 +66,8 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h3 className="text-base font-medium">Email</h3>
-                    <p className="text-muted-foreground">contact@healthhub.com</p>
-                    <p className="text-muted-foreground">support@healthhub.com</p>
+                    <p className="text-muted-foreground">contact@Horizon.com</p>
+                    <p className="text-muted-foreground">support@Horizon.com</p>
                   </div>
                 </div>
                 

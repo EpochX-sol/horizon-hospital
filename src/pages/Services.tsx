@@ -136,7 +136,7 @@ const ServicesPage = () => {
                   Personalized Healthcare Journey
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  At HealthHub, we believe in a personalized approach to healthcare. Our team of specialists works 
+                  At Horizon, we believe in a personalized approach to healthcare. Our team of specialists works 
                   together to create tailored treatment plans for each patient, taking into account individual 
                   health profiles, needs, and preferences.
                 </p>
