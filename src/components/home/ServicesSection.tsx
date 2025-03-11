@@ -5,8 +5,7 @@ import {
   Brain, 
   Bone, 
   Baby, 
-  Microscope, 
-  Flask, 
+  Microscope,  
   ArrowRight 
 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -71,8 +70,7 @@ const ServicesSection = () => {
       title: "Radiology",
       description: "State-of-the-art imaging services including MRI, CT scans, and ultrasound diagnostics."
     },
-    {
-      icon: <Flask className="h-6 w-6" />,
+    { 
       title: "Laboratory",
       description: "Quick and accurate diagnostic testing with our advanced medical laboratory."
     }
