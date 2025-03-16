@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -121,6 +120,7 @@ const Footer = () => {
         
         <div className="text-center text-muted-foreground text-sm">
           <p>© {new Date().getFullYear()} Horizon. All rights reserved. | Designed with precision for better healthcare.</p>
+          <p className="mt-2">Powered by <span className="text-primary font-medium">Samuel Wubalem</span></p>
         </div>
       </div>
     </footer>
